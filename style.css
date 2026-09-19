@@ -2,637 +2,107 @@
   box-sizing: border-box;
 }
 
-html,
 body {
   margin: 0;
-  padding: 0;
-  width: 100%;
-  min-height: 100%;
+  min-height: 100vh;
   font-family: Arial, sans-serif;
-  background: #f4f4f4;
+  background: radial-gradient(circle at top, #3c2515, #140b06 70%);
   color: white;
 }
 
-body {
-  overflow-x: hidden;
-}
+/* YUXARI HİSSƏ */
 
-.game {
-  width: 100%;
-  max-width: 700px;
-  margin: 0 auto;
-  min-height: 100vh;
-}
-
-
-/* =========================
-   YUXARI PANEL
-========================= */
-
-.top-bar {
-  height: 64px;
+.topbar {
+  height: 65px;
+  padding: 0 14px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-
-  padding: 8px 14px;
-
-  background: #c97925;
-  border-bottom: 2px solid #a75b18;
-
-  position: relative;
-  z-index: 20;
+  background: #24130b;
+  border-bottom: 2px solid #6e3e20;
+  box-shadow: 0 4px 15px rgba(0,0,0,.4);
 }
 
-.game-title {
+.logo {
   font-size: 20px;
   font-weight: bold;
 }
 
-.heart-box,
-.bonus-box {
+.top-actions {
   display: flex;
   align-items: center;
-  gap: 5px;
+  gap: 8px;
+}
 
-  padding: 7px 11px;
-
+.hearts {
+  background: #40151b;
+  border: 1px solid #b43a4c;
   border-radius: 20px;
-
-  background: rgba(255, 255, 255, 0.18);
-
+  padding: 8px 12px;
   font-weight: bold;
 }
 
-.heart-box {
-  font-size: 20px;
-}
-
-.heart-box span,
-.bonus-box span {
-  font-size: 17px;
-}
-
-
-/* =========================
-   TAxta MASA
-========================= */
-
-.table {
-  position: relative;
-
-  width: 100%;
-  height: 620px;
-
-  overflow: hidden;
-
-  background:
-    repeating-linear-gradient(
-      90deg,
-      rgba(100, 45, 10, 0.08) 0px,
-      rgba(255, 210, 120, 0.06) 8px,
-      rgba(100, 45, 10, 0.08) 18px
-    ),
-    linear-gradient(
-      90deg,
-      #a95c20,
-      #d78936,
-      #b96924,
-      #d98937,
-      #a85a20
-    );
-
-  box-shadow:
-    inset 0 0 50px rgba(90, 40, 10, 0.35);
-}
-
-
-/* taxta xətləri */
-
-.table::before,
-.table::after {
-  content: "";
-
-  position: absolute;
-
-  left: 0;
-  width: 100%;
-  height: 2px;
-
-  background: rgba(100, 45, 10, 0.16);
-}
-
-.table::before {
-  top: 34%;
-}
-
-.table::after {
-  top: 67%;
-}
-
-
-/* =========================
-   OYUNÇULAR
-========================= */
-
-.players {
-  position: absolute;
-
-  inset: 0;
-
-  z-index: 5;
-}
-
-
-/* ümumi oyunçu */
-
-.player {
-  position: absolute;
-
-  width: 92px;
-
-  text-align: center;
-
-  transition:
-    transform 0.25s,
-    filter 0.25s;
-}
-
-
-/* profil şəkli */
-
-.player-avatar {
-  width: 78px;
-  height: 78px;
-
-  margin: 0 auto;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  border-radius: 10px;
-
-  border: 3px solid rgba(255, 255, 255, 0.9);
-
-  background: #eee;
-
-  font-size: 42px;
-
-  overflow: hidden;
-
-  box-shadow:
-    0 3px 7px rgba(0, 0, 0, 0.35);
-}
-
-
-/* ad */
-
-.player-name {
-  margin-top: 4px;
-
-  padding: 2px 4px;
-
+.store-btn {
+  border: 0;
+  border-radius: 18px;
+  padding: 9px 12px;
+  background: #d08a28;
   color: white;
-
-  font-size: 12px;
   font-weight: bold;
-
-  text-shadow:
-    0 1px 3px black;
-
-  white-space: nowrap;
-
-  overflow: hidden;
-
-  text-overflow: ellipsis;
-}
-
-
-/* cinsiyyət göstəricisi */
-
-.player-gender {
-  font-size: 11px;
-
-  margin-top: 1px;
-
-  text-shadow:
-    0 1px 3px black;
-}
-
-
-/* =========================
-   12 YER
-========================= */
-
-/* 1 */
-.player:nth-child(1) {
-  top: 25px;
-  left: 7%;
-}
-
-/* 2 */
-.player:nth-child(2) {
-  top: 25px;
-  left: 32%;
-}
-
-/* 3 */
-.player:nth-child(3) {
-  top: 25px;
-  right: 7%;
-}
-
-/* 4 */
-.player:nth-child(4) {
-  top: 185px;
-  right: 5%;
-}
-
-/* 5 */
-.player:nth-child(5) {
-  top: 360px;
-  right: 6%;
-}
-
-/* 6 */
-.player:nth-child(6) {
-  bottom: 25px;
-  right: 20%;
-}
-
-/* 7 */
-.player:nth-child(7) {
-  bottom: 25px;
-  left: 20%;
-}
-
-/* 8 */
-.player:nth-child(8) {
-  top: 360px;
-  left: 6%;
-}
-
-/* 9 */
-.player:nth-child(9) {
-  top: 185px;
-  left: 5%;
-}
-
-/* 10 */
-.player:nth-child(10) {
-  top: 120px;
-  left: 27%;
-}
-
-/* 11 */
-.player:nth-child(11) {
-  top: 120px;
-  right: 27%;
-}
-
-/* 12 */
-.player:nth-child(12) {
-  bottom: 125px;
-  left: 50%;
-  transform: translateX(-50%);
-}
-
-
-/* =========================
-   SEÇİLƏN OYUNÇU
-========================= */
-
-.player.selected .player-avatar {
-  border-color: #ffe66d;
-
-  box-shadow:
-    0 0 8px #fff,
-    0 0 20px #ffd43b,
-    0 0 35px #ffb300;
-
-  transform: scale(1.13);
-}
-
-.player.selected .player-name {
-  color: #ffe66d;
-
-  font-size: 13px;
-}
-
-
-/* =========================
-   ŞÜŞƏ
-========================= */
-
-.bottle-area {
-  position: absolute;
-
-  left: 50%;
-  top: 50%;
-
-  transform: translate(-50%, -50%);
-
-  width: 250px;
-
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-
-  z-index: 10;
-
-  text-align: center;
-}
-
-.bottle {
-  width: 100px;
-  height: 120px;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  font-size: 88px;
-
-  transform-origin: center center;
-
-  transition:
-    transform 3s cubic-bezier(.12, .75, .18, 1);
-
-  filter:
-    drop-shadow(0 8px 6px rgba(0, 0, 0, 0.5));
-}
-
-.status {
-  margin-top: 5px;
-
-  max-width: 230px;
-
-  font-size: 20px;
-  font-weight: bold;
-
-  line-height: 1.2;
-
-  color: white;
-
-  text-shadow:
-    0 2px 4px black;
-}
-
-
-/* fırlat düyməsi */
-
-.spin-button {
-  margin-top: 18px;
-
-  padding: 12px 24px;
-
-  border: none;
-
-  border-radius: 25px;
-
-  background: #f39a32;
-
-  color: white;
-
-  font-size: 16px;
-  font-weight: bold;
-
-  box-shadow:
-    0 4px 10px rgba(0, 0, 0, 0.3);
-
   cursor: pointer;
 }
 
-.spin-button:active {
-  transform: scale(0.94);
-}
+/* ƏSAS */
 
-.spin-button:disabled {
-  opacity: 0.5;
-}
-
-
-/* =========================
-   ÇAT
-========================= */
-
-.chat {
-  background: white;
-
-  color: #333;
-
-  min-height: 400px;
-
-  position: relative;
-}
-
-.chat-messages {
-  height: 350px;
-
-  overflow-y: auto;
-
+main {
+  width: 100%;
+  max-width: 700px;
+  margin: auto;
   padding: 12px;
 }
 
-.message {
-  margin-bottom: 9px;
-
-  padding: 8px 11px;
-
-  width: fit-content;
-  max-width: 85%;
-
-  border-radius: 14px;
-
-  background: #eeeeee;
-
-  font-size: 14px;
+.game-area {
+  text-align: center;
 }
 
-.message b {
-  color: #b45d18;
+/* QISA TAxta MASA */
+
+.wood-table {
+  position: relative;
+  width: 100%;
+  height: 360px;
+  margin: 5px auto 12px;
+
+  border-radius: 42px;
+
+  background:
+    linear-gradient(
+      135deg,
+      #6e3d1d,
+      #9a5a29,
+      #633518
+    );
+
+  border: 7px solid #321a0c;
+
+  box-shadow:
+    inset 0 0 0 3px #b7763c,
+    inset 0 0 30px rgba(0,0,0,.45),
+    0 10px 25px rgba(0,0,0,.6);
 }
 
+/* OYUNÇULAR */
 
-/* =========================
-   MESAJ QUTUSU
-========================= */
-
-.chat-input {
-  position: sticky;
-  bottom: 0;
-
-  display: flex;
-
-  align-items: center;
-
-  gap: 8px;
-
-  padding: 10px;
-
-  background: white;
-
-  border-top: 1px solid #ddd;
+.players {
+  position: absolute;
+  inset: 0;
 }
 
-.chat-input input {
-  flex: 1;
+.player {
+  position: absolute;
+  width: 70px;
 
-  height: 48px;
+  transform: translate(-50%, -50%);
 
-  border: 0;
-
-  outline: none;
-
-  padding: 0 14px;
-
-  border-radius: 24px;
-
-  background: #f1f1f1;
-
-  color: #333;
-
-  font-size: 16px;
-}
-
-.chat-input button {
-  width: 48px;
-  height: 48px;
-
-  border: none;
-
-  border-radius: 50%;
-
-  background: #f2a33b;
-
-  color: white;
-
-  font-size: 25px;
-
-  cursor: pointer;
-}
-
-
-/* =========================
-   BONUS PANELİ
-========================= */
-
-.bonus-panel {
-  padding: 18px;
-
-  background: #24140d;
-
-  border-top: 2px solid #d88935;
-}
-
-.bonus-panel h3 {
-  margin: 0 0 6px;
-}
-
-.bonus-panel p {
-  margin: 5px 0 12px;
-
-  color: #e5c5a7;
-
-  font-size: 13px;
-}
-
-.bonus-controls {
-  display: flex;
-
-  gap: 8px;
-}
-
-.bonus-controls input {
-  width: 100px;
-
-  border: none;
-
-  border-radius: 10px;
-
-  padding: 11px;
-
-  font-size: 16px;
-}
-
-.bonus-controls button {
-  flex: 1;
-
-  border: none;
-
-  border-radius: 10px;
-
-  background: #e18b2e;
-
-  color: white;
-
-  font-weight: bold;
-
-  cursor: pointer;
-}
-
-
-/* =========================
-   TELEFON
-========================= */
-
-@media (max-width: 480px) {
-
-  .top-bar {
-    height: 58px;
-
-    padding: 7px 9px;
-  }
-
-  .game-title {
-    font-size: 17px;
-  }
-
-  .heart-box,
-  .bonus-box {
-    padding: 6px 8px;
-  }
-
-  .table {
-    height: 560px;
-  }
-
-  .player {
-    width: 70px;
-  }
-
-  .player-avatar {
-    width: 62px;
-    height: 62px;
-
-    font-size: 34px;
-  }
-
-  .player-name {
-    font-size: 10px;
-  }
-
-  .player-gender {
-    font-size: 9px;
-  }
-
-  .player:nth-child(1) {
-    left: 3%;
-  }
-
-  .player:nth-child(2) {
-    left: 50%;
-    transform: translateX(-50%);
-  }
-
-  .player:nth-child(3) {
-    right: 3%;
-  }
-
-  .player:nth-child(4) {
-    right: 1%;
-    top: 170px;
-  }
-
-  .player:nth-child(
+  text-align: center;
+  z-index: 5
