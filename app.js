@@ -1,195 +1,118 @@
 const players = [
-  {
-    name: "Aysel",
-    gender: "👩",
-    hearts: 88
-  },
-  {
-    name: "Murad",
-    gender: "👨",
-    hearts: 72
-  },
-  {
-    name: "Nigar",
-    gender: "👩",
-    hearts: 95
-  },
-  {
-    name: "Elvin",
-    gender: "👨",
-    hearts: 64
-  },
-  {
-    name: "Lala",
-    gender: "👩",
-    hearts: 81
-  },
-  {
-    name: "Tural",
-    gender: "👨",
-    hearts: 56
-  },
-  {
-    name: "Zəhra",
-    gender: "👩",
-    hearts: 77
-  },
-  {
-    name: "Orxan",
-    gender: "👨",
-    hearts: 91
-  },
-  {
-    name: "Leyla",
-    gender: "👩",
-    hearts: 68
-  },
-  {
-    name: "Samir",
-    gender: "👨",
-    hearts: 84
-  },
-  {
-    name: "Məlahət",
-    gender: "👩",
-    hearts: 73
-  },
-  {
-    name: "Rəşad",
-    gender: "👨",
-    hearts: 60
-  }
+  { name: "Aysel", avatar: "👩🏻", hearts: 88 },
+  { name: "Murad", avatar: "👨🏻", hearts: 72 },
+  { name: "Nigar", avatar: "👩🏻", hearts: 95 },
+  { name: "Elvin", avatar: "👨🏻", hearts: 64 },
+  { name: "Lala", avatar: "👩🏻", hearts: 81 },
+  { name: "Tural", avatar: "👨🏻", hearts: 56 },
+  { name: "Zəhra", avatar: "👩🏻", hearts: 77 },
+  { name: "Orxan", avatar: "👨🏻", hearts: 91 },
+  { name: "Leyla", avatar: "👩🏻", hearts: 68 },
+  { name: "Samir", avatar: "👨🏻", hearts: 84 },
+  { name: "Məlahət", avatar: "👩🏻", hearts: 73 },
+  { name: "Rəşad", avatar: "👨🏻", hearts: 60 }
 ];
-
-
-const playersBox = document.getElementById("players");
-
-const bottle = document.getElementById("bottle");
-
-const spinBtn = document.getElementById("spinBtn");
-
-const statusElement =
-  document.getElementById("status");
-
-const heartsElement =
-  document.getElementById("hearts");
-
-const bonusElement =
-  document.getElementById("bonus");
-
-const giveBtn =
-  document.getElementById("giveBtn");
-
-const bonusAmount =
-  document.getElementById("bonusAmount");
-
-const chatInput =
-  document.getElementById("chatInput");
-
-const chatSend =
-  document.getElementById("chatSend");
-
-const chatMessages =
-  document.getElementById("chatMessages");
-
 
 let hearts = 100;
 
-let bonus = 0;
+const playersBox = document.getElementById("players");
+const bottle = document.getElementById("bottle");
+const statusText = document.getElementById("status");
+const spinBtn = document.getElementById("spinBtn");
+const heartsText = document.getElementById("hearts");
 
-let spinning = false;
+const chatMessages = document.getElementById("chatMessages");
+const chatInput = document.getElementById("chatInput");
+const sendChat = document.getElementById("sendChat");
 
-let rotation = 0;
+const bonusAmount = document.getElementById("bonusAmount");
+const giveBonus = document.getElementById("giveBonus");
 
-
-// ==============================
-// 12 OYUNÇUNU MASAYA YERLƏŞDİR
-// ==============================
-
-players.forEach((player, index) => {
-
-  const box = document.createElement("div");
-
-  box.className = "player";
-
-  box.dataset.index = index;
+const storeBtn = document.getElementById("storeBtn");
+const storeModal = document.getElementById("storeModal");
+const closeStore = document.getElementById("closeStore");
 
 
-  box.innerHTML = `
-    
-    <div class="player-avatar">
-      ${player.gender}
-    </div>
+/* OYUNÇULAR */
 
-    <div class="player-name">
-      ${player.name}
-    </div>
+function renderPlayers() {
 
-    <div class="player-gender">
-      ❤️ ${player.hearts}
-    </div>
+  playersBox.innerHTML = "";
 
-  `;
+  players.forEach((player, index) => {
+
+    const playerBox = document.createElement("div");
+
+    playerBox.className = `player p${index + 1}`;
+
+    playerBox.dataset.index = index;
+
+    playerBox.innerHTML = `
+      <div class="player-card">
+        ${player.avatar}
+      </div>
+
+      <div class="player-name">
+        ${player.name}
+      </div>
+
+      <div class="player-hearts">
+        ❤️ ${player.hearts}
+      </div>
+    `;
+
+    playersBox.appendChild(playerBox);
+  });
+}
+
+renderPlayers();
 
 
-  playersBox.appendChild(box);
+/* ÜRƏK SAYI */
 
-});
+function updateHearts() {
+  heartsText.textContent = hearts;
+}
+
+updateHearts();
 
 
-// ==============================
-// ŞÜŞƏNİ FƏRİLAT
-// ==============================
+/* ŞÜŞƏNİ FIRLAT */
 
 spinBtn.addEventListener("click", () => {
 
-  if (spinning) {
+  if (hearts <= 0) {
+
+    statusText.textContent =
+      "❤️ Ürəyin qalmayıb!";
+
     return;
   }
 
+  hearts--;
 
-  spinning = true;
+  updateHearts();
+
+  document.querySelectorAll(".player").forEach(player => {
+    player.classList.remove("selected");
+  });
 
   spinBtn.disabled = true;
 
+  statusText.textContent =
+    "Şüşə fırlanır...";
 
-  // Köhnə seçimi sil
-  document
-    .querySelectorAll(".player")
-    .forEach(player => {
+  bottle.classList.remove("spinning");
 
-      player.classList.remove("selected");
+  void bottle.offsetWidth;
 
-    });
-
-
-  statusElement.textContent =
-    "🍾 Şüşə fırlanır...";
+  bottle.classList.add("spinning");
 
 
-  // Təsadüfi oyunçu seç
   const selectedIndex =
-    Math.floor(
-      Math.random() * players.length
-    );
+    Math.floor(Math.random() * players.length);
 
 
-  // Şüşənin uzun fırlanması
-  const extraRotation =
-    1440 +
-    Math.floor(
-      Math.random() * 720
-    );
-
-
-  rotation += extraRotation;
-
-
-  bottle.style.transform =
-    `rotate(${rotation}deg)`;
-
-
-  // 3 saniyə sonra nəticə
   setTimeout(() => {
 
     const selectedPlayer =
@@ -197,109 +120,64 @@ spinBtn.addEventListener("click", () => {
         `.player[data-index="${selectedIndex}"]`
       );
 
+    selectedPlayer.classList.add("selected");
 
-    if (selectedPlayer) {
+    statusText.textContent =
+      `🎯 Şüşə ${players[selectedIndex].name} seçdi!`;
 
-      selectedPlayer.classList.add(
-        "selected"
-      );
-
-    }
-
-
-    const player =
-      players[selectedIndex];
-
-
-    statusElement.textContent =
-      `🎯 ${player.name} seçildi!`;
-
-
-    spinning = false;
+    addMessage(
+      "Sistem",
+      `🍾 Şüşə ${players[selectedIndex].name} adlı oyunçunu seçdi!`
+    );
 
     spinBtn.disabled = false;
 
-
-  }, 3000);
-
-});
-
-
-// ==============================
-// ADMİN BONUSU
-// ==============================
-
-giveBtn.addEventListener("click", () => {
-
-  const amount =
-    Number(bonusAmount.value);
-
-
-  if (!amount || amount < 1) {
-
-    alert(
-      "Bonus məbləğini düzgün yaz."
-    );
-
-    return;
-  }
-
-
-  bonus += amount;
-
-
-  bonusElement.textContent =
-    bonus;
-
-
-  statusElement.textContent =
-    `👑 Admin ❤️ ${amount} bonus əlavə etdi.`;
+  }, 2200);
 
 });
 
 
-// ==============================
-// ÇAT MESAJI
-// ==============================
+/* ÇAT */
+
+function addMessage(name, message) {
+
+  const div = document.createElement("div");
+
+  div.className = "message";
+
+  const bold = document.createElement("b");
+
+  bold.textContent = name + ":";
+
+  div.appendChild(bold);
+
+  div.appendChild(
+    document.createTextNode(" " + message)
+  );
+
+  chatMessages.appendChild(div);
+
+  chatMessages.scrollTop =
+    chatMessages.scrollHeight;
+}
+
 
 function sendMessage() {
 
   const text =
     chatInput.value.trim();
 
+  if (!text) return;
 
-  if (!text) {
-    return;
-  }
-
-
-  const message =
-    document.createElement("div");
-
-
-  message.className =
-    "message";
-
-
-  message.innerHTML =
-    `<b>Sən:</b> ${text}`;
-
-
-  chatMessages.appendChild(
-    message
-  );
-
+  addMessage("Sən", text);
 
   chatInput.value = "";
 
-
-  chatMessages.scrollTop =
-    chatMessages.scrollHeight;
-
+  chatInput.focus();
 }
 
 
-chatSend.addEventListener(
+sendChat.addEventListener(
   "click",
   sendMessage
 );
@@ -310,8 +188,79 @@ chatInput.addEventListener(
   (event) => {
 
     if (event.key === "Enter") {
-
       sendMessage();
+    }
+
+  }
+);
+
+
+/* ADMİN BONUS */
+
+giveBonus.addEventListener(
+  "click",
+  () => {
+
+    const amount =
+      parseInt(bonusAmount.value);
+
+    if (!amount || amount <= 0) {
+
+      alert(
+        "Bonus miqdarını düzgün yaz."
+      );
+
+      return;
+    }
+
+    hearts += amount;
+
+    updateHearts();
+
+    addMessage(
+      "Admin",
+      `❤️ ${amount} bonus əlavə edildi.`
+    );
+
+  }
+);
+
+
+/* MAĞAZA */
+
+storeBtn.addEventListener(
+  "click",
+  () => {
+
+    storeModal.classList.remove(
+      "hidden"
+    );
+
+  }
+);
+
+
+closeStore.addEventListener(
+  "click",
+  () => {
+
+    storeModal.classList.add(
+      "hidden"
+    );
+
+  }
+);
+
+
+storeModal.addEventListener(
+  "click",
+  (event) => {
+
+    if (event.target === storeModal) {
+
+      storeModal.classList.add(
+        "hidden"
+      );
 
     }
 
@@ -319,12 +268,35 @@ chatInput.addEventListener(
 );
 
 
-// ==============================
-// BAŞLANĞIC
-// ==============================
+/* MAĞAZADAN ÜRƏK */
 
-heartsElement.textContent =
-  hearts;
+document
+  .querySelectorAll(".store-item")
+  .forEach(item => {
 
-bonusElement.textContent =
-  bonus;
+    item.addEventListener(
+      "click",
+      () => {
+
+        const amount =
+          parseInt(
+            item.dataset.hearts
+          );
+
+        hearts += amount;
+
+        updateHearts();
+
+        addMessage(
+          "Mağaza",
+          `❤️ ${amount} bonus hesabına əlavə edildi.`
+        );
+
+        storeModal.classList.add(
+          "hidden"
+        );
+
+      }
+    );
+
+  });
