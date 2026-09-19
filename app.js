@@ -1,3 +1,4 @@
+
 const players = [
   { name:"Boss", photo:"https://i.pravatar.cc/150?img=1", kisses:12, music:1, smileys:8 },
   { name:"Aysel", photo:"https://i.pravatar.cc/150?img=2", kisses:7, music:0, smileys:5 },
