@@ -8,3 +8,8 @@
   box-shadow: 0 0 25px gold;
   border: 2px solid gold;
 }
+.player.selected .avatar {
+  border: 4px solid gold;
+  box-shadow: 0 0 25px 8px gold;
+  background: #ffd86b;
+}
