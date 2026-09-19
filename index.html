@@ -1,10 +1,13 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="az">
+
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>Boss Bottle</title>
-<link rel="stylesheet" href="style.css">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+
+  <title>Boss Bottle</title>
+
+  <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
@@ -12,25 +15,49 @@
 <div class="app">
 
   <header>
-    <div class="brand">🍾 <b>Boss Bottle</b></div>
-    <div class="coins">🪙 <span id="coins">100</span></div>
+    <div class="brand">
+      🍾 <b>Boss Bottle</b>
+    </div>
+
+    <div class="coins">
+      🪙 <span id="coins">100</span>
+    </div>
   </header>
+
 
   <main>
 
+    <!-- OYUN MASASI -->
     <div class="table">
+
       <div id="players"></div>
 
       <div class="bottle-wrap">
-        <div id="bottle" class="bottle">🍾</div>
-        <div class="status" id="status">Fırlatmağa hazırsan?</div>
+
+        <div id="bottle" class="bottle">
+          🍾
+        </div>
+
+        <div class="status" id="status">
+          Fırlatmağa hazırsan?
+        </div>
+
       </div>
+
     </div>
 
 
+    <!-- DÜYMƏLƏR -->
     <div class="controls">
-      <button id="spinBtn">🍾 Şüşəni fırlat</button>
-      <button id="bonusBtn" class="secondary">🎁 Gündəlik bonus</button>
+
+      <button id="spinBtn">
+        🍾 Şüşəni fırlat
+      </button>
+
+      <button id="bonusBtn" class="secondary">
+        🎁 Gündəlik bonus
+      </button>
+
     </div>
 
 
@@ -40,6 +67,7 @@
       <div class="chat-title">
         💬 CANLI ÇAT
       </div>
+
 
       <div id="chatMessages" class="chat-messages">
 
@@ -86,6 +114,7 @@
       </div>
 
 
+      <!-- MESAJ YAZMA -->
       <div class="chat-input-row">
 
         <input
@@ -104,13 +133,17 @@
     </section>
 
 
+    <!-- ADMIN PANELİ -->
     <section class="panel">
 
-      <h3>👑 Admin</h3>
+      <h3>
+        👑 Admin
+      </h3>
 
       <p>
         Bu demo rejimində admin yalnız sən kimi göstərilir.
       </p>
+
 
       <div class="admin-row">
 
@@ -127,6 +160,7 @@
 
       </div>
 
+
       <small>
         Real oyunda bu hüquq serverdə Telegram istifadəçi ID-si ilə qorunmalıdır.
       </small>
@@ -137,6 +171,8 @@
 
 </div>
 
+
+<!-- JAVASCRIPT -->
 <script src="app.js"></script>
 
 </body>
