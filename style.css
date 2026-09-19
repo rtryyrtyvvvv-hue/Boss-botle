@@ -243,3 +243,52 @@ small{
     font-size:65px;
   }
 }
+/* PROFİL ŞƏKİLLƏRİ */
+.avatar img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  border-radius:7px;
+  display:block;
+}
+
+/* OYUNÇUYA BASANDA */
+.player{
+  cursor:pointer;
+  user-select:none;
+}
+
+.player:active{
+  transform:scale(0.95);
+}
+
+/* MOBİL */
+@media(max-width:500px){
+  .avatar img{
+    border-radius:7px;
+  }
+}/* PROFİL ŞƏKİLLƏRİ */
+.avatar img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  border-radius:7px;
+  display:block;
+}
+
+/* OYUNÇUYA BASANDA */
+.player{
+  cursor:pointer;
+  user-select:none;
+}
+
+.player:active{
+  transform:scale(0.95);
+}
+
+/* MOBİL */
+@media(max-width:500px){
+  .avatar img{
+    border-radius:7px;
+  }
+}
