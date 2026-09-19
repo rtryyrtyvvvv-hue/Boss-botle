@@ -2,82 +2,132 @@
   box-sizing: border-box;
 }
 
+html,
 body {
   margin: 0;
-  min-height: 100vh;
+  padding: 0;
+  width: 100%;
+  min-height: 100%;
   font-family: Arial, sans-serif;
-  background:
-    radial-gradient(circle at top, #4b2414, #160b08 70%);
+  background: #f4f4f4;
   color: white;
 }
 
-button,
-input {
-  font-family: inherit;
+body {
+  overflow-x: hidden;
 }
 
-.app {
+.game {
   width: 100%;
-  max-width: 600px;
-  margin: auto;
-  padding: 12px;
+  max-width: 700px;
+  margin: 0 auto;
+  min-height: 100vh;
 }
 
 
 /* =========================
-   HEADER
+   YUXARI PANEL
 ========================= */
 
-header {
+.top-bar {
+  height: 64px;
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  justify-content: space-between;
 
-  padding: 14px 16px;
-  margin-bottom: 12px;
+  padding: 8px 14px;
 
-  border-radius: 16px;
+  background: #c97925;
+  border-bottom: 2px solid #a75b18;
 
-  background: rgba(80, 38, 20, 0.9);
-  border: 1px solid rgba(255, 190, 100, 0.25);
+  position: relative;
+  z-index: 20;
 }
 
-.brand {
+.game-title {
   font-size: 20px;
+  font-weight: bold;
 }
 
-.coins {
-  padding: 8px 12px;
-  border-radius: 12px;
+.heart-box,
+.bonus-box {
+  display: flex;
+  align-items: center;
+  gap: 5px;
 
-  background: #24130d;
+  padding: 7px 11px;
+
+  border-radius: 20px;
+
+  background: rgba(255, 255, 255, 0.18);
 
   font-weight: bold;
 }
 
+.heart-box {
+  font-size: 20px;
+}
+
+.heart-box span,
+.bonus-box span {
+  font-size: 17px;
+}
+
 
 /* =========================
-   OYUN MASASI
+   TAxta MASA
 ========================= */
 
 .table {
   position: relative;
 
   width: 100%;
-  height: 430px;
-
-  border-radius: 50%;
-
-  background:
-    radial-gradient(circle, #a85c27, #612b16 65%, #32140b);
-
-  border: 12px solid #24100a;
-
-  box-shadow:
-    inset 0 0 30px rgba(0, 0, 0, 0.6),
-    0 15px 35px rgba(0, 0, 0, 0.5);
+  height: 620px;
 
   overflow: hidden;
+
+  background:
+    repeating-linear-gradient(
+      90deg,
+      rgba(100, 45, 10, 0.08) 0px,
+      rgba(255, 210, 120, 0.06) 8px,
+      rgba(100, 45, 10, 0.08) 18px
+    ),
+    linear-gradient(
+      90deg,
+      #a95c20,
+      #d78936,
+      #b96924,
+      #d98937,
+      #a85a20
+    );
+
+  box-shadow:
+    inset 0 0 50px rgba(90, 40, 10, 0.35);
+}
+
+
+/* taxta xətləri */
+
+.table::before,
+.table::after {
+  content: "";
+
+  position: absolute;
+
+  left: 0;
+  width: 100%;
+  height: 2px;
+
+  background: rgba(100, 45, 10, 0.16);
+}
+
+.table::before {
+  top: 34%;
+}
+
+.table::after {
+  top: 67%;
 }
 
 
@@ -85,142 +135,189 @@ header {
    OYUNÇULAR
 ========================= */
 
-#players {
+.players {
   position: absolute;
+
   inset: 0;
+
+  z-index: 5;
 }
+
+
+/* ümumi oyunçu */
 
 .player {
   position: absolute;
 
-  width: 76px;
-  height: 76px;
-
-  padding: 5px;
+  width: 92px;
 
   text-align: center;
 
-  border-radius: 14px;
-
-  background: rgba(35, 18, 12, 0.95);
-
-  border: 2px solid rgba(255, 204, 130, 0.5);
-
   transition:
     transform 0.25s,
-    border 0.25s,
-    box-shadow 0.25s;
+    filter 0.25s;
 }
 
-.player:nth-child(1) {
-  top: 12px;
-  left: 50%;
-  transform: translateX(-50%);
-}
 
-.player:nth-child(2) {
-  top: 35px;
-  right: 90px;
-}
+/* profil şəkli */
 
-.player:nth-child(3) {
-  top: 125px;
-  right: 18px;
-}
+.player-avatar {
+  width: 78px;
+  height: 78px;
 
-.player:nth-child(4) {
-  top: 235px;
-  right: 18px;
-}
-
-.player:nth-child(5) {
-  bottom: 30px;
-  right: 90px;
-}
-
-.player:nth-child(6) {
-  bottom: 12px;
-  left: 50%;
-  transform: translateX(-50%);
-}
-
-.player:nth-child(7) {
-  bottom: 30px;
-  left: 90px;
-}
-
-.player:nth-child(8) {
-  top: 235px;
-  left: 18px;
-}
-
-.player:nth-child(9) {
-  top: 125px;
-  left: 18px;
-}
-
-.player:nth-child(10) {
-  top: 35px;
-  left: 90px;
-}
-
-.player:nth-child(11) {
-  top: 85px;
-  left: 50%;
-  margin-left: -160px;
-}
-
-.player:nth-child(12) {
-  top: 85px;
-  right: 50%;
-  margin-right: -160px;
-}
-
-.player-picture {
-  width: 42px;
-  height: 42px;
-
-  margin: auto;
+  margin: 0 auto;
 
   display: flex;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
 
   border-radius: 10px;
 
-  background: #8b4b25;
+  border: 3px solid rgba(255, 255, 255, 0.9);
 
-  font-size: 28px;
+  background: #eee;
+
+  font-size: 42px;
+
+  overflow: hidden;
+
+  box-shadow:
+    0 3px 7px rgba(0, 0, 0, 0.35);
 }
 
-.player-name {
-  margin-top: 3px;
 
-  font-size: 10px;
+/* ad */
+
+.player-name {
+  margin-top: 4px;
+
+  padding: 2px 4px;
+
+  color: white;
+
+  font-size: 12px;
+  font-weight: bold;
+
+  text-shadow:
+    0 1px 3px black;
 
   white-space: nowrap;
+
   overflow: hidden;
+
   text-overflow: ellipsis;
 }
 
 
-/* SEÇİLƏN OYUNÇU */
+/* cinsiyyət göstəricisi */
 
-.player.selected {
-  border: 3px solid #ffd45a;
+.player-gender {
+  font-size: 11px;
 
-  box-shadow:
-    0 0 10px #ffd45a,
-    0 0 25px rgba(255, 210, 70, 0.8);
+  margin-top: 1px;
 
-  transform: scale(1.12);
+  text-shadow:
+    0 1px 3px black;
 }
 
-.player:nth-child(1).selected,
-.player:nth-child(6).selected {
-  transform:
-    translateX(-50%)
-    scale(1.12);
+
+/* =========================
+   12 YER
+========================= */
+
+/* 1 */
+.player:nth-child(1) {
+  top: 25px;
+  left: 7%;
+}
+
+/* 2 */
+.player:nth-child(2) {
+  top: 25px;
+  left: 32%;
+}
+
+/* 3 */
+.player:nth-child(3) {
+  top: 25px;
+  right: 7%;
+}
+
+/* 4 */
+.player:nth-child(4) {
+  top: 185px;
+  right: 5%;
+}
+
+/* 5 */
+.player:nth-child(5) {
+  top: 360px;
+  right: 6%;
+}
+
+/* 6 */
+.player:nth-child(6) {
+  bottom: 25px;
+  right: 20%;
+}
+
+/* 7 */
+.player:nth-child(7) {
+  bottom: 25px;
+  left: 20%;
+}
+
+/* 8 */
+.player:nth-child(8) {
+  top: 360px;
+  left: 6%;
+}
+
+/* 9 */
+.player:nth-child(9) {
+  top: 185px;
+  left: 5%;
+}
+
+/* 10 */
+.player:nth-child(10) {
+  top: 120px;
+  left: 27%;
+}
+
+/* 11 */
+.player:nth-child(11) {
+  top: 120px;
+  right: 27%;
+}
+
+/* 12 */
+.player:nth-child(12) {
+  bottom: 125px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+
+/* =========================
+   SEÇİLƏN OYUNÇU
+========================= */
+
+.player.selected .player-avatar {
+  border-color: #ffe66d;
+
+  box-shadow:
+    0 0 8px #fff,
+    0 0 20px #ffd43b,
+    0 0 35px #ffb300;
+
+  transform: scale(1.13);
+}
+
+.player.selected .player-name {
+  color: #ffe66d;
+
+  font-size: 13px;
 }
 
 
@@ -228,7 +325,7 @@ header {
    ŞÜŞƏ
 ========================= */
 
-.bottle-wrap {
+.bottle-area {
   position: absolute;
 
   left: 50%;
@@ -236,235 +333,243 @@ header {
 
   transform: translate(-50%, -50%);
 
+  width: 250px;
+
   display: flex;
   flex-direction: column;
   align-items: center;
 
-  z-index: 5;
+  z-index: 10;
+
+  text-align: center;
 }
 
 .bottle {
-  width: 90px;
-  height: 90px;
+  width: 100px;
+  height: 120px;
 
   display: flex;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
 
-  font-size: 68px;
+  font-size: 88px;
 
-  transform-origin: center;
+  transform-origin: center center;
 
   transition:
-    transform 3s cubic-bezier(.15,.75,.15,1);
+    transform 3s cubic-bezier(.12, .75, .18, 1);
 
   filter:
-    drop-shadow(0 8px 6px rgba(0,0,0,.5));
+    drop-shadow(0 8px 6px rgba(0, 0, 0, 0.5));
 }
 
 .status {
-  margin-top: 8px;
+  margin-top: 5px;
 
-  padding: 7px 12px;
+  max-width: 230px;
 
-  border-radius: 20px;
+  font-size: 20px;
+  font-weight: bold;
 
-  background: rgba(0, 0, 0, 0.65);
+  line-height: 1.2;
 
-  font-size: 12px;
+  color: white;
 
-  white-space: nowrap;
+  text-shadow:
+    0 2px 4px black;
+}
+
+
+/* fırlat düyməsi */
+
+.spin-button {
+  margin-top: 18px;
+
+  padding: 12px 24px;
+
+  border: none;
+
+  border-radius: 25px;
+
+  background: #f39a32;
+
+  color: white;
+
+  font-size: 16px;
+  font-weight: bold;
+
+  box-shadow:
+    0 4px 10px rgba(0, 0, 0, 0.3);
+
+  cursor: pointer;
+}
+
+.spin-button:active {
+  transform: scale(0.94);
+}
+
+.spin-button:disabled {
+  opacity: 0.5;
 }
 
 
 /* =========================
-   DÜYMƏLƏR
+   ÇAT
 ========================= */
 
-.controls {
-  display: flex;
-  gap: 10px;
+.chat {
+  background: white;
 
-  margin-top: 14px;
+  color: #333;
+
+  min-height: 400px;
+
+  position: relative;
 }
 
-button {
+.chat-messages {
+  height: 350px;
+
+  overflow-y: auto;
+
+  padding: 12px;
+}
+
+.message {
+  margin-bottom: 9px;
+
+  padding: 8px 11px;
+
+  width: fit-content;
+  max-width: 85%;
+
+  border-radius: 14px;
+
+  background: #eeeeee;
+
+  font-size: 14px;
+}
+
+.message b {
+  color: #b45d18;
+}
+
+
+/* =========================
+   MESAJ QUTUSU
+========================= */
+
+.chat-input {
+  position: sticky;
+  bottom: 0;
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 8px;
+
+  padding: 10px;
+
+  background: white;
+
+  border-top: 1px solid #ddd;
+}
+
+.chat-input input {
+  flex: 1;
+
+  height: 48px;
+
   border: 0;
 
-  padding: 13px 15px;
+  outline: none;
 
-  border-radius: 12px;
+  padding: 0 14px;
 
-  background: #e28a2d;
+  border-radius: 24px;
+
+  background: #f1f1f1;
+
+  color: #333;
+
+  font-size: 16px;
+}
+
+.chat-input button {
+  width: 48px;
+  height: 48px;
+
+  border: none;
+
+  border-radius: 50%;
+
+  background: #f2a33b;
+
+  color: white;
+
+  font-size: 25px;
+
+  cursor: pointer;
+}
+
+
+/* =========================
+   BONUS PANELİ
+========================= */
+
+.bonus-panel {
+  padding: 18px;
+
+  background: #24140d;
+
+  border-top: 2px solid #d88935;
+}
+
+.bonus-panel h3 {
+  margin: 0 0 6px;
+}
+
+.bonus-panel p {
+  margin: 5px 0 12px;
+
+  color: #e5c5a7;
+
+  font-size: 13px;
+}
+
+.bonus-controls {
+  display: flex;
+
+  gap: 8px;
+}
+
+.bonus-controls input {
+  width: 100px;
+
+  border: none;
+
+  border-radius: 10px;
+
+  padding: 11px;
+
+  font-size: 16px;
+}
+
+.bonus-controls button {
+  flex: 1;
+
+  border: none;
+
+  border-radius: 10px;
+
+  background: #e18b2e;
 
   color: white;
 
   font-weight: bold;
 
   cursor: pointer;
-
-  box-shadow:
-    0 4px 10px rgba(0, 0, 0, 0.3);
-
-  transition:
-    transform 0.15s,
-    opacity 0.15s;
-}
-
-button:active {
-  transform: scale(0.96);
-}
-
-button:disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
-}
-
-#spinBtn {
-  flex: 1;
-
-  font-size: 15px;
-}
-
-.secondary {
-  background: #63321e;
-}
-
-
-/* =========================
-   CANLI ÇAT
-========================= */
-
-.chat {
-  margin-top: 16px;
-
-  padding: 12px;
-
-  border-radius: 16px;
-
-  background: rgba(47, 23, 14, 0.95);
-
-  border: 1px solid rgba(255, 190, 100, 0.2);
-}
-
-.chat-title {
-  font-weight: bold;
-
-  margin-bottom: 10px;
-}
-
-.chat-messages {
-  height: 180px;
-
-  overflow-y: auto;
-
-  padding: 8px;
-
-  border-radius: 10px;
-
-  background: rgba(0, 0, 0, 0.2);
-}
-
-.chat-message {
-  margin-bottom: 7px;
-
-  padding: 7px 9px;
-
-  border-radius: 9px;
-
-  background: rgba(255, 255, 255, 0.06);
-
-  font-size: 13px;
-}
-
-.chat-message b {
-  color: #ffc46b;
-}
-
-.chat-input-row {
-  display: flex;
-
-  gap: 8px;
-
-  margin-top: 9px;
-}
-
-.chat-input-row input {
-  min-width: 0;
-  flex: 1;
-
-  padding: 12px;
-
-  border: 0;
-  outline: none;
-
-  border-radius: 10px;
-
-  background: #24130d;
-
-  color: white;
-}
-
-.chat-input-row input::placeholder {
-  color: #aa958a;
-}
-
-
-/* =========================
-   ADMIN
-========================= */
-
-.panel {
-  margin-top: 16px;
-
-  padding: 15px;
-
-  border-radius: 16px;
-
-  background: rgba(47, 23, 14, 0.95);
-
-  border: 1px solid rgba(255, 190, 100, 0.2);
-}
-
-.panel h3 {
-  margin: 0 0 5px;
-}
-
-.panel p {
-  margin: 5px 0 12px;
-
-  color: #f6d6ac;
-
-  font-size: 13px;
-}
-
-.admin-row {
-  display: flex;
-
-  gap: 8px;
-}
-
-.admin-row input {
-  width: 110px;
-
-  border: 0;
-  outline: none;
-
-  padding: 12px;
-
-  border-radius: 10px;
-
-  font-size: 16px;
-}
-
-.panel small {
-  display: block;
-
-  margin-top: 10px;
-
-  color: #bda99d;
-
-  line-height: 1.4;
 }
 
 
@@ -474,53 +579,60 @@ button:disabled {
 
 @media (max-width: 480px) {
 
-  .app {
-    padding: 8px;
+  .top-bar {
+    height: 58px;
+
+    padding: 7px 9px;
+  }
+
+  .game-title {
+    font-size: 17px;
+  }
+
+  .heart-box,
+  .bonus-box {
+    padding: 6px 8px;
   }
 
   .table {
-    height: 400px;
+    height: 560px;
   }
 
   .player {
-    width: 65px;
-    height: 65px;
+    width: 70px;
   }
 
-  .player-picture {
-    width: 35px;
-    height: 35px;
+  .player-avatar {
+    width: 62px;
+    height: 62px;
 
-    font-size: 23px;
+    font-size: 34px;
   }
 
   .player-name {
+    font-size: 10px;
+  }
+
+  .player-gender {
     font-size: 9px;
   }
 
-  .player:nth-child(2),
-  .player:nth-child(10) {
-    right: 55px;
-    left: auto;
+  .player:nth-child(1) {
+    left: 3%;
   }
 
-  .player:nth-child(5),
-  .player:nth-child(7) {
-    right: 55px;
-    left: auto;
+  .player:nth-child(2) {
+    left: 50%;
+    transform: translateX(-50%);
   }
 
-  .player:nth-child(10) {
-    left: 55px;
-    right: auto;
+  .player:nth-child(3) {
+    right: 3%;
   }
 
-  .player:nth-child(11) {
-    margin-left: -120px;
+  .player:nth-child(4) {
+    right: 1%;
+    top: 170px;
   }
 
-  .player:nth-child(12) {
-    margin-right: -120px;
-  }
-
-}
+  .player:nth-child(
