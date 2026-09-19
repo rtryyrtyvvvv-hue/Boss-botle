@@ -2,8 +2,8 @@
 <html lang="az">
 
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <title>Boss Bottle</title>
 
@@ -12,120 +12,84 @@
 
 <body>
 
-<div class="app">
+  <div class="game">
 
-  <header>
-    <div class="brand">
-      🍾 <b>Boss Bottle</b>
-    </div>
+    <!-- YUXARI PANEL -->
+    <header class="top-bar">
 
-    <div class="coins">
-      🪙 <span id="coins">100</span>
-    </div>
-  </header>
+      <div class="heart-box">
+        ❤️ <span id="hearts">100</span>
+      </div>
 
+      <div class="game-title">
+        🍾 Boss Bottle
+      </div>
 
-  <main>
+      <div class="bonus-box">
+        🎁 <span id="bonus">0</span>
+      </div>
+
+    </header>
+
 
     <!-- OYUN MASASI -->
-    <div class="table">
+    <main class="table">
 
-      <div id="players"></div>
+      <!-- OYUNÇULAR -->
+      <div id="players" class="players"></div>
 
-      <div class="bottle-wrap">
+
+      <!-- ORTADAKI ŞÜŞƏ -->
+      <div class="bottle-area">
 
         <div id="bottle" class="bottle">
           🍾
         </div>
 
-        <div class="status" id="status">
-          Fırlatmağa hazırsan?
+        <div id="status" class="status">
+          Növbəti fırlanmanı gözləyirlər
         </div>
 
+        <button id="spinBtn" class="spin-button">
+          🍾 Fırlat
+        </button>
+
       </div>
 
-    </div>
+    </main>
 
 
-    <!-- DÜYMƏLƏR -->
-    <div class="controls">
-
-      <button id="spinBtn">
-        🍾 Şüşəni fırlat
-      </button>
-
-      <button id="bonusBtn" class="secondary">
-        🎁 Gündəlik bonus
-      </button>
-
-    </div>
-
-
-    <!-- CANLI ÇAT -->
+    <!-- ÇAT -->
     <section class="chat">
-
-      <div class="chat-title">
-        💬 CANLI ÇAT
-      </div>
-
 
       <div id="chatMessages" class="chat-messages">
 
-        <div class="chat-message">
+        <div class="message">
           <b>Aysel:</b> Salam 👋
         </div>
 
-        <div class="chat-message">
-          <b>Murad:</b> Kim fırladacaq? 😄
+        <div class="message">
+          <b>Murad:</b> Başlayaq 😄
         </div>
 
-        <div class="chat-message">
+        <div class="message">
           <b>Nigar:</b> Mən hazıram ❤️
-        </div>
-
-        <div class="chat-message">
-          <b>Elvin:</b> Gəl başlayaq 🔥
-        </div>
-
-        <div class="chat-message">
-          <b>Lala:</b> Mən də buradayam 😊
-        </div>
-
-        <div class="chat-message">
-          <b>Tural:</b> Şüşəni fırlat 🍾
-        </div>
-
-        <div class="chat-message">
-          <b>Zehra:</b> Kim seçiləcək? 😍
-        </div>
-
-        <div class="chat-message">
-          <b>Orxan:</b> Gözləyirəm 😄
-        </div>
-
-        <div class="chat-message">
-          <b>Leyla:</b> Salam hamıya ❤️
-        </div>
-
-        <div class="chat-message">
-          <b>Samir:</b> Başlayaq 🔥
         </div>
 
       </div>
 
 
-      <!-- MESAJ YAZMA -->
-      <div class="chat-input-row">
+      <div class="chat-input">
 
         <input
           id="chatInput"
           type="text"
-          placeholder="Mesaj yaz..."
+          placeholder="Mesaj bura yaz"
           maxlength="100"
         >
 
         <button id="chatSend">
-          Göndər
+          ➤
         </button>
 
       </div>
@@ -133,47 +97,36 @@
     </section>
 
 
-    <!-- ADMIN PANELİ -->
-    <section class="panel">
+    <!-- BONUS -->
+    <section class="bonus-panel">
 
-      <h3>
-        👑 Admin
-      </h3>
+      <h3>❤️ Bonus</h3>
 
       <p>
-        Bu demo rejimində admin yalnız sən kimi göstərilir.
+        Ürək bonusunu yalnız admin əlavə edə bilər.
       </p>
 
-
-      <div class="admin-row">
+      <div class="bonus-controls">
 
         <input
           id="bonusAmount"
           type="number"
           min="1"
-          value="25"
+          value="10"
         >
 
         <button id="giveBtn">
-          Bonus əlavə et
+          ❤️ Bonus əlavə et
         </button>
 
       </div>
 
-
-      <small>
-        Real oyunda bu hüquq serverdə Telegram istifadəçi ID-si ilə qorunmalıdır.
-      </small>
-
     </section>
 
-  </main>
-
-</div>
+  </div>
 
 
-<!-- JAVASCRIPT -->
-<script src="app.js"></script>
+  <script src="app.js"></script>
 
 </body>
 </html>
