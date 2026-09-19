@@ -1,4 +1,3 @@
-
 const players = [
   { name:"Boss", photo:"https://i.pravatar.cc/150?img=1", kisses:12, music:1, smileys:8 },
   { name:"Aysel", photo:"https://i.pravatar.cc/150?img=2", kisses:7, music:0, smileys:5 },
@@ -42,16 +41,12 @@ players.forEach((player, index) => {
     <div class="avatar">
       <img src="${player.photo}" alt="${player.name}">
     </div>
-
     <span>${player.name}</span>
   `;
 
-
-  /* =========================
-     1 DƏFƏ / 2 DƏFƏ TOXUNMA
-  ========================= */
-
   let tapTimer = null;
+
+  /* 1 toxunuş = HƏDİYYƏ */
 
   div.addEventListener("click", () => {
 
@@ -61,7 +56,6 @@ players.forEach((player, index) => {
 
       tapTimer = null;
 
-      /* 1 DƏFƏ BASANDA */
       openGiftMenu(index);
 
     }, 300);
@@ -69,14 +63,17 @@ players.forEach((player, index) => {
   });
 
 
+  /* 2 sürətli toxunuş = PROFİL */
+
   div.addEventListener("dblclick", () => {
 
     if (tapTimer) {
+
       clearTimeout(tapTimer);
       tapTimer = null;
+
     }
 
-    /* 2 DƏFƏ BASANDA */
     openProfile(index);
 
   });
@@ -92,7 +89,9 @@ players.forEach((player, index) => {
 ========================= */
 
 function updateCoins() {
+
   coinsBox.textContent = coins;
+
 }
 
 
@@ -121,11 +120,14 @@ function openGiftMenu(index) {
 
   closeModal();
 
+
   const modal = document.createElement("div");
 
   modal.id = "profileModal";
 
+
   modal.innerHTML = `
+
     <div style="
       position:fixed;
       inset:0;
@@ -163,9 +165,7 @@ function openGiftMenu(index) {
           🎁 ${player.name}
         </h2>
 
-        <p>
-          Hədiyyə göndər
-        </p>
+        <p>Hədiyyə göndər</p>
 
         <div style="
           display:grid;
@@ -173,29 +173,12 @@ function openGiftMenu(index) {
           gap:10px;
         ">
 
-          <button class="giftButton" data-gift="🎁">
-            🎁
-          </button>
-
-          <button class="giftButton" data-gift="🌹">
-            🌹
-          </button>
-
-          <button class="giftButton" data-gift="💎">
-            💎
-          </button>
-
-          <button class="giftButton" data-gift="👑">
-            👑
-          </button>
-
-          <button class="giftButton" data-gift="❤️">
-            ❤️
-          </button>
-
-          <button class="giftButton" data-gift="💋">
-            💋
-          </button>
+          <button class="giftButton" data-gift="🎁">🎁</button>
+          <button class="giftButton" data-gift="🌹">🌹</button>
+          <button class="giftButton" data-gift="💎">💎</button>
+          <button class="giftButton" data-gift="👑">👑</button>
+          <button class="giftButton" data-gift="❤️">❤️</button>
+          <button class="giftButton" data-gift="💋">💋</button>
 
         </div>
 
@@ -217,8 +200,11 @@ function openGiftMenu(index) {
         </button>
 
       </div>
+
     </div>
+
   `;
+
 
   document.body.appendChild(modal);
 
@@ -231,6 +217,7 @@ function openGiftMenu(index) {
     button.style.fontSize = "28px";
     button.style.background = "#32190d";
     button.style.cursor = "pointer";
+
 
     button.addEventListener("click", () => {
 
@@ -263,11 +250,14 @@ function openProfile(index) {
 
   closeModal();
 
+
   const modal = document.createElement("div");
 
   modal.id = "profileModal";
 
+
   modal.innerHTML = `
+
     <div style="
       position:fixed;
       inset:0;
@@ -292,8 +282,6 @@ function openProfile(index) {
         text-align:center;
       ">
 
-        <!-- ŞƏKİL -->
-
         <img
           src="${player.photo}"
           style="
@@ -305,9 +293,7 @@ function openProfile(index) {
           "
         >
 
-        <h2 style="
-          margin:10px 0 22px;
-        ">
+        <h2 style="margin:10px 0 22px;">
           ${player.name}
         </h2>
 
@@ -329,6 +315,7 @@ function openProfile(index) {
             💋 Öpüş
           </div>
 
+
           <div style="
             display:flex;
             gap:12px;
@@ -349,6 +336,7 @@ function openProfile(index) {
               💋
             </button>
 
+
             <button
               id="redKiss"
               style="
@@ -364,6 +352,7 @@ function openProfile(index) {
             </button>
 
           </div>
+
 
           <div style="
             margin-top:10px;
@@ -392,6 +381,7 @@ function openProfile(index) {
             🎵 Mahnı
           </div>
 
+
           <div style="
             background:#5a3018;
             border-radius:12px;
@@ -405,6 +395,7 @@ function openProfile(index) {
             }
 
           </div>
+
 
           ${
             !player.music
@@ -430,7 +421,7 @@ function openProfile(index) {
         </div>
 
 
-        <!-- SMAYLIK -->
+        <!-- SMAYLİK -->
 
         <div style="
           background:#32190d;
@@ -447,12 +438,14 @@ function openProfile(index) {
             😊 Smaylik
           </div>
 
+
           <div style="
             font-size:30px;
             letter-spacing:7px;
           ">
             😊 😍 😂 ❤️
           </div>
+
 
           <div style="
             margin-top:10px;
@@ -481,13 +474,16 @@ function openProfile(index) {
         </button>
 
       </div>
+
     </div>
+
   `;
+
 
   document.body.appendChild(modal);
 
 
-  /* YAŞIL ÖPÜŞ = SAYILIR */
+  /* YAŞIL ÖPÜŞ */
 
   document
     .getElementById("greenKiss")
@@ -503,7 +499,7 @@ function openProfile(index) {
     });
 
 
-  /* QIRMIZI ÖPÜŞ = SAYILMIR */
+  /* QIRMIZI ÖPÜŞ */
 
   document
     .getElementById("redKiss")
@@ -520,18 +516,19 @@ function openProfile(index) {
   const buyMusic =
     document.getElementById("buyMusic");
 
+
   if (buyMusic) {
 
     buyMusic.addEventListener("click", () => {
 
       if (coins < 9) {
 
-        alert(
-          "Mahnı üçün 9 bonus lazımdır."
-        );
+        alert("Mahnı üçün 9 bonus lazımdır.");
 
         return;
+
       }
+
 
       coins -= 9;
 
@@ -562,7 +559,8 @@ function openProfile(index) {
 
 function clearSelectedPlayers() {
 
-  document.querySelectorAll(".player")
+  document
+    .querySelectorAll(".player")
     .forEach(player => {
 
       player.classList.remove("selected");
@@ -576,6 +574,7 @@ spinBtn.addEventListener("click", () => {
 
   if (spinning) return;
 
+
   spinning = true;
 
   spinBtn.disabled = true;
@@ -587,20 +586,16 @@ spinBtn.addEventListener("click", () => {
 
 
   const selected =
-    Math.floor(
-      Math.random() * players.length
-    ) + 1;
+    Math.floor(Math.random() * players.length) + 1;
 
 
   const rotation =
-    1440 +
-    Math.floor(
-      Math.random() * 1440
-    );
+    1440 + Math.floor(Math.random() * 1440);
 
 
   bottle.style.transition =
     "transform 3.5s cubic-bezier(.17,.67,.18,1)";
+
 
   bottle.style.transform =
     `rotate(${rotation}deg)`;
@@ -616,9 +611,7 @@ spinBtn.addEventListener("click", () => {
 
     if (selectedPlayer) {
 
-      selectedPlayer.classList.add(
-        "selected"
-      );
+      selectedPlayer.classList.add("selected");
 
     }
 
@@ -644,14 +637,17 @@ bonusBtn.addEventListener("click", () => {
 
   if (bonusBtn.disabled) return;
 
+
   coins += 25;
 
   updateCoins();
+
 
   bonusBtn.disabled = true;
 
   bonusBtn.textContent =
     "✅ Bonus götürüldü";
+
 
   status.textContent =
     "🎁 25 coin bonus qazandın!";
@@ -671,11 +667,10 @@ giveBtn.addEventListener("click", () => {
 
   if (!amount || amount < 1) {
 
-    alert(
-      "Bonus məbləğini düzgün yaz."
-    );
+    alert("Bonus məbləğini düzgün yaz.");
 
     return;
+
   }
 
 
@@ -683,10 +678,82 @@ giveBtn.addEventListener("click", () => {
 
   updateCoins();
 
+
   status.textContent =
     `👑 Admin ${amount} coin əlavə etdi.`;
 
 });
 
+
+/* =========================
+   CANLI ÇAT
+========================= */
+
+const chatInput =
+  document.getElementById("chatInput");
+
+const chatSend =
+  document.getElementById("chatSend");
+
+const chatMessages =
+  document.getElementById("chatMessages");
+
+
+function sendChatMessage() {
+
+  const message =
+    chatInput.value.trim();
+
+
+  if (!message) return;
+
+
+  const newMessage =
+    document.createElement("div");
+
+
+  newMessage.className =
+    "chat-message";
+
+
+  newMessage.innerHTML =
+    `<b>Boss:</b> ${message}`;
+
+
+  chatMessages.appendChild(newMessage);
+
+
+  chatMessages.scrollTop =
+    chatMessages.scrollHeight;
+
+
+  chatInput.value = "";
+
+}
+
+
+chatSend.addEventListener(
+  "click",
+  sendChatMessage
+);
+
+
+chatInput.addEventListener(
+  "keydown",
+  event => {
+
+    if (event.key === "Enter") {
+
+      sendChatMessage();
+
+    }
+
+  }
+);
+
+
+/* =========================
+   BAŞLANĞIC
+========================= */
 
 updateCoins();
