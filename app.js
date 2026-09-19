@@ -1,32 +1,110 @@
 const players = [
-  "👤", "👤", "👤", "👤",
-  "👤", "👤", "👤", "👤",
-  "👤", "👤", "👤", "👤"
+  {
+    name: "Aysel",
+    gender: "👩",
+    hearts: 88
+  },
+  {
+    name: "Murad",
+    gender: "👨",
+    hearts: 72
+  },
+  {
+    name: "Nigar",
+    gender: "👩",
+    hearts: 95
+  },
+  {
+    name: "Elvin",
+    gender: "👨",
+    hearts: 64
+  },
+  {
+    name: "Lala",
+    gender: "👩",
+    hearts: 81
+  },
+  {
+    name: "Tural",
+    gender: "👨",
+    hearts: 56
+  },
+  {
+    name: "Zəhra",
+    gender: "👩",
+    hearts: 77
+  },
+  {
+    name: "Orxan",
+    gender: "👨",
+    hearts: 91
+  },
+  {
+    name: "Leyla",
+    gender: "👩",
+    hearts: 68
+  },
+  {
+    name: "Samir",
+    gender: "👨",
+    hearts: 84
+  },
+  {
+    name: "Məlahət",
+    gender: "👩",
+    hearts: 73
+  },
+  {
+    name: "Rəşad",
+    gender: "👨",
+    hearts: 60
+  }
 ];
 
+
 const playersBox = document.getElementById("players");
+
 const bottle = document.getElementById("bottle");
+
 const spinBtn = document.getElementById("spinBtn");
-const bonusBtn = document.getElementById("bonusBtn");
-const giveBtn = document.getElementById("giveBtn");
 
-const coinsElement = document.getElementById("coins");
-const statusElement = document.getElementById("status");
+const statusElement =
+  document.getElementById("status");
 
-const bonusAmount = document.getElementById("bonusAmount");
+const heartsElement =
+  document.getElementById("hearts");
 
-const chatInput = document.getElementById("chatInput");
-const chatSend = document.getElementById("chatSend");
-const chatMessages = document.getElementById("chatMessages");
+const bonusElement =
+  document.getElementById("bonus");
 
-let coins = 100;
+const giveBtn =
+  document.getElementById("giveBtn");
+
+const bonusAmount =
+  document.getElementById("bonusAmount");
+
+const chatInput =
+  document.getElementById("chatInput");
+
+const chatSend =
+  document.getElementById("chatSend");
+
+const chatMessages =
+  document.getElementById("chatMessages");
+
+
+let hearts = 100;
+
+let bonus = 0;
+
 let spinning = false;
+
 let rotation = 0;
 
 
-// ==========================
-// 12 OYUNÇUNU GÖSTƏR
-// ==========================
+// ==============================
+// 12 OYUNÇUNU MASAYA YERLƏŞDİR
+// ==============================
 
 players.forEach((player, index) => {
 
@@ -36,19 +114,32 @@ players.forEach((player, index) => {
 
   box.dataset.index = index;
 
+
   box.innerHTML = `
-    <div class="player-picture">${player}</div>
-    <div class="player-name">Oyunçu ${index + 1}</div>
+    
+    <div class="player-avatar">
+      ${player.gender}
+    </div>
+
+    <div class="player-name">
+      ${player.name}
+    </div>
+
+    <div class="player-gender">
+      ❤️ ${player.hearts}
+    </div>
+
   `;
+
 
   playersBox.appendChild(box);
 
 });
 
 
-// ==========================
-// ŞÜŞƏNİ FƏRİLAD
-// ==========================
+// ==============================
+// ŞÜŞƏNİ FƏRİLAT
+// ==============================
 
 spinBtn.addEventListener("click", () => {
 
@@ -56,33 +147,49 @@ spinBtn.addEventListener("click", () => {
     return;
   }
 
-  spinning = true;
 
-  statusElement.textContent = "🍾 Şüşə fırlanır...";
+  spinning = true;
 
   spinBtn.disabled = true;
 
-  // Köhnə seçimi təmizlə
-  document.querySelectorAll(".player").forEach(player => {
-    player.classList.remove("selected");
-  });
+
+  // Köhnə seçimi sil
+  document
+    .querySelectorAll(".player")
+    .forEach(player => {
+
+      player.classList.remove("selected");
+
+    });
 
 
-  // Təsadüfi oyunçu
-  const selectedIndex = Math.floor(Math.random() * players.length);
+  statusElement.textContent =
+    "🍾 Şüşə fırlanır...";
 
 
-  // Bir neçə tam dövr + təsadüfi bucaq
+  // Təsadüfi oyunçu seç
+  const selectedIndex =
+    Math.floor(
+      Math.random() * players.length
+    );
+
+
+  // Şüşənin uzun fırlanması
   const extraRotation =
-    1440 + Math.floor(Math.random() * 720);
+    1440 +
+    Math.floor(
+      Math.random() * 720
+    );
+
 
   rotation += extraRotation;
+
 
   bottle.style.transform =
     `rotate(${rotation}deg)`;
 
 
-  // Animasiya bitəndən sonra
+  // 3 saniyə sonra nəticə
   setTimeout(() => {
 
     const selectedPlayer =
@@ -90,96 +197,102 @@ spinBtn.addEventListener("click", () => {
         `.player[data-index="${selectedIndex}"]`
       );
 
+
     if (selectedPlayer) {
-      selectedPlayer.classList.add("selected");
+
+      selectedPlayer.classList.add(
+        "selected"
+      );
+
     }
 
+
+    const player =
+      players[selectedIndex];
+
+
     statusElement.textContent =
-      `🎯 Oyunçu ${selectedIndex + 1} seçildi!`;
+      `🎯 ${player.name} seçildi!`;
+
 
     spinning = false;
 
     spinBtn.disabled = false;
+
 
   }, 3000);
 
 });
 
 
-// ==========================
-// GÜNDƏLİK BONUS
-// ==========================
-
-bonusBtn.addEventListener("click", () => {
-
-  const dailyBonus = 25;
-
-  coins += dailyBonus;
-
-  coinsElement.textContent = coins;
-
-  statusElement.textContent =
-    `🎁 +${dailyBonus} bonus qazandın!`;
-
-});
-
-
-// ==========================
+// ==============================
 // ADMİN BONUSU
-// ==========================
+// ==============================
 
 giveBtn.addEventListener("click", () => {
 
-  const amount = Number(bonusAmount.value);
+  const amount =
+    Number(bonusAmount.value);
+
 
   if (!amount || amount < 1) {
 
-    alert("Bonus məbləğini düzgün yaz.");
+    alert(
+      "Bonus məbləğini düzgün yaz."
+    );
 
     return;
   }
 
-  coins += amount;
 
-  coinsElement.textContent = coins;
+  bonus += amount;
+
+
+  bonusElement.textContent =
+    bonus;
+
 
   statusElement.textContent =
-    `👑 Admin +${amount} bonus əlavə etdi.`;
+    `👑 Admin ❤️ ${amount} bonus əlavə etdi.`;
 
 });
 
 
-// ==========================
-// ÇAT MESAJI GÖNDƏR
-// ==========================
+// ==============================
+// ÇAT MESAJI
+// ==============================
 
 function sendMessage() {
 
-  const message =
+  const text =
     chatInput.value.trim();
 
-  if (!message) {
+
+  if (!text) {
     return;
   }
 
 
-  const newMessage =
+  const message =
     document.createElement("div");
 
-  newMessage.className =
-    "chat-message";
 
-  newMessage.innerHTML =
-    `<b>Sən:</b> ${message}`;
+  message.className =
+    "message";
 
 
-  chatMessages.appendChild(newMessage);
+  message.innerHTML =
+    `<b>Sən:</b> ${text}`;
+
+
+  chatMessages.appendChild(
+    message
+  );
 
 
   chatInput.value = "";
 
 
-  // Çatı aşağı sürüşdür
   chatMessages.scrollTop =
     chatMessages.scrollHeight;
 
@@ -197,8 +310,21 @@ chatInput.addEventListener(
   (event) => {
 
     if (event.key === "Enter") {
+
       sendMessage();
+
     }
 
   }
 );
+
+
+// ==============================
+// BAŞLANĞIC
+// ==============================
+
+heartsElement.textContent =
+  hearts;
+
+bonusElement.textContent =
+  bonus;
