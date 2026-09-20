@@ -4,100 +4,309 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Boss Bottle</title>
-  <link rel="stylesheet" href="style.css">
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background: #f3f3f3;
+      font-family: Arial, sans-serif;
+    }
+
+    /* TAxta MASA */
+    .table {
+      position: relative;
+      width: 100%;
+      max-width: 700px;
+      height: 780px;
+      margin: 0 auto;
+      overflow: hidden;
+
+      background:
+        linear-gradient(
+          rgba(150, 82, 30, .12),
+          rgba(150, 82, 30, .12)
+        ),
+        repeating-linear-gradient(
+          8deg,
+          #d18a43 0px,
+          #d18a43 18px,
+          #c47b38 19px,
+          #d9934d 38px
+        );
+
+      box-shadow: inset 0 0 50px rgba(70, 35, 10, .25);
+    }
+
+    /* Taxtada xırda damarlar */
+    .table::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      opacity: .25;
+      background:
+        repeating-radial-gradient(
+          ellipse at 20% 30%,
+          transparent 0px,
+          transparent 35px,
+          rgba(90,45,15,.25) 36px,
+          transparent 38px
+        );
+      pointer-events: none;
+    }
+
+    /* OYUNÇU */
+    .player {
+      position: absolute;
+      width: 105px;
+      text-align: center;
+      z-index: 5;
+      transform: translate(-50%, -50%);
+    }
+
+    .player-photo {
+      width: 96px;
+      height: 96px;
+      border-radius: 10px;
+      object-fit: cover;
+      display: block;
+      margin: auto;
+
+      background: #777;
+      border: 2px solid rgba(255,255,255,.75);
+
+      box-shadow:
+        0 3px 7px rgba(0,0,0,.35);
+    }
+
+    .player-name {
+      margin-top: 5px;
+      color: white;
+      font-size: 14px;
+      font-weight: bold;
+
+      text-shadow:
+        1px 1px 3px #000,
+        -1px -1px 2px #000;
+    }
+
+    /* ŞÜŞƏ */
+    .bottle {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+
+      width: 58px;
+      height: 155px;
+
+      transform:
+        translate(-50%, -50%)
+        rotate(0deg);
+
+      transform-origin: 50% 50%;
+
+      z-index: 3;
+    }
+
+    .bottle-body {
+      position: absolute;
+      bottom: 0;
+      left: 5px;
+
+      width: 48px;
+      height: 112px;
+
+      border-radius: 14px 14px 17px 17px;
+
+      background:
+        linear-gradient(
+          90deg,
+          #087d24,
+          #45d34e,
+          #15952c,
+          #075e1b
+        );
+
+      border: 2px solid #075519;
+
+      box-shadow:
+        inset 8px 0 10px rgba(255,255,255,.2),
+        0 5px 10px rgba(0,0,0,.35);
+    }
+
+    .bottle-neck {
+      position: absolute;
+      left: 16px;
+      top: 17px;
+
+      width: 26px;
+      height: 42px;
+
+      background:
+        linear-gradient(
+          90deg,
+          #087b23,
+          #45cf4b,
+          #0c7922
+        );
+
+      border-radius: 7px 7px 3px 3px;
+      border: 2px solid #075519;
+    }
+
+    .bottle-cap {
+      position: absolute;
+      left: 16px;
+      top: 7px;
+
+      width: 26px;
+      height: 14px;
+
+      border-radius: 5px 5px 2px 2px;
+      background: #18a93a;
+      border: 2px solid #075519;
+    }
+
+    /* 12 OYUNÇUNUN YERLƏŞMƏSİ */
+
+    .p1  { left: 25%; top: 11%; }
+    .p2  { left: 50%; top: 9%; }
+    .p3  { left: 75%; top: 11%; }
+
+    .p4  { left: 91%; top: 29%; }
+    .p5  { left: 91%; top: 50%; }
+    .p6  { left: 89%; top: 73%; }
+
+    .p7  { left: 72%; top: 90%; }
+    .p8  { left: 50%; top: 93%; }
+    .p9  { left: 28%; top: 90%; }
+
+    .p10 { left: 11%; top: 73%; }
+    .p11 { left: 9%; top: 50%; }
+    .p12 { left: 9%; top: 29%; }
+
+
+    @media (max-width: 500px) {
+
+      .table {
+        height: 760px;
+      }
+
+      .player {
+        width: 78px;
+      }
+
+      .player-photo {
+        width: 70px;
+        height: 70px;
+      }
+
+      .player-name {
+        font-size: 11px;
+      }
+
+      .bottle {
+        transform:
+          translate(-50%, -50%)
+          scale(.85);
+      }
+    }
+  </style>
 </head>
 
 <body>
 
-<header class="topbar">
-  <div class="logo">🍾 <b>Boss Bottle</b></div>
+  <div class="table">
 
-  <div class="top-actions">
-    <div class="heart">❤️ <span id="hearts">100</span></div>
-    <button>🛒 Mağaza</button>
-  </div>
-</header>
-
-<main>
-
-<section class="game">
-
-  <div class="game-top">
-    <span>❤️ 100</span>
-    <span>⚔️</span>
-    <span>🏆</span>
-    <span>☰</span>
-    <span>⚙️</span>
-    <b>Masa 12</b>
-  </div>
-
-  <div id="table" class="table">
-
-    <div id="players"></div>
-
-    <div id="bottle" class="bottle">
-      🍾
+    <!-- 1 -->
+    <div class="player p1">
+      <img class="player-photo" src="https://i.pravatar.cc/200?img=12">
+      <div class="player-name">Player 1</div>
     </div>
 
-    <div class="spin-hint">
-      Şüşəni fırlat
+    <!-- 2 -->
+    <div class="player p2">
+      <img class="player-photo" src="https://i.pravatar.cc/200?img=32">
+      <div class="player-name">Player 2</div>
+    </div>
+
+    <!-- 3 -->
+    <div class="player p3">
+      <img class="player-photo" src="https://i.pravatar.cc/200?img=47">
+      <div class="player-name">Player 3</div>
+    </div>
+
+    <!-- 4 -->
+    <div class="player p4">
+      <img class="player-photo" src="https://i.pravatar.cc/200?img=5">
+      <div class="player-name">Player 4</div>
+    </div>
+
+    <!-- 5 -->
+    <div class="player p5">
+      <img class="player-photo" src="https://i.pravatar.cc/200?img=15">
+      <div class="player-name">Player 5</div>
+    </div>
+
+    <!-- 6 -->
+    <div class="player p6">
+      <img class="player-photo" src="https://i.pravatar.cc/200?img=23">
+      <div class="player-name">Player 6</div>
+    </div>
+
+    <!-- 7 -->
+    <div class="player p7">
+      <img class="player-photo" src="https://i.pravatar.cc/200?img=44">
+      <div class="player-name">Player 7</div>
+    </div>
+
+    <!-- 8 -->
+    <div class="player p8">
+      <img class="player-photo" src="https://i.pravatar.cc/200?img=11">
+      <div class="player-name">Player 8</div>
+    </div>
+
+    <!-- 9 -->
+    <div class="player p9">
+      <img class="player-photo" src="https://i.pravatar.cc/200?img=36">
+      <div class="player-name">Player 9</div>
+    </div>
+
+    <!-- 10 -->
+    <div class="player p10">
+      <img class="player-photo" src="https://i.pravatar.cc/200?img=49">
+      <div class="player-name">Player 10</div>
+    </div>
+
+    <!-- 11 -->
+    <div class="player p11">
+      <img class="player-photo" src="https://i.pravatar.cc/200?img=8">
+      <div class="player-name">Player 11</div>
+    </div>
+
+    <!-- 12 -->
+    <div class="player p12">
+      <img class="player-photo" src="https://i.pravatar.cc/200?img=19">
+      <div class="player-name">Player 12</div>
+    </div>
+
+
+    <!-- ORTADAKI ŞÜŞƏ -->
+    <div class="bottle">
+
+      <div class="bottle-cap"></div>
+
+      <div class="bottle-neck"></div>
+
+      <div class="bottle-body"></div>
+
     </div>
 
   </div>
-
-  <button id="spinBtn" class="spin-btn">
-    🍾 Şüşəni fırlat
-  </button>
-
-</section>
-
-
-<section class="chat">
-
-  <h2>💬 Söhbət</h2>
-
-  <div id="messages">
-    <p><b>Sistem:</b> Boss Bottle-a xoş gəlmisən!</p>
-  </div>
-
-  <div class="chat-row">
-    <input id="chatInput" placeholder="Mesaj yaz...">
-    <button id="sendBtn">Göndər</button>
-  </div>
-
-</section>
-
-
-<section class="admin">
-
-  <h2>👑 Admin</h2>
-
-  <p class="admin-note">
-    Bonus yalnız admin tərəfindən verilə bilər.
-  </p>
-
-  <div class="admin-row">
-
-    <input
-      id="bonusInput"
-      type="number"
-      value="10"
-      min="1"
-    >
-
-    <button id="bonusBtn">
-      ❤️ Bonus ver
-    </button>
-
-  </div>
-
-  <div id="adminMsg"></div>
-
-</section>
-
-</main>
-
-<script src="app.js"></script>
 
 </body>
 </html>
