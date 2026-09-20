@@ -4,105 +4,328 @@
 
 body {
   margin: 0;
-  min-height: 100vh;
   font-family: Arial, sans-serif;
-  background: radial-gradient(circle at top, #3c2515, #140b06 70%);
+  background: #180b06;
   color: white;
 }
 
 /* YUXARI HİSSƏ */
 
 .topbar {
-  height: 65px;
-  padding: 0 14px;
+  height: 76px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background: #24130b;
-  border-bottom: 2px solid #6e3e20;
-  box-shadow: 0 4px 15px rgba(0,0,0,.4);
+  padding: 0 16px;
+  background: #261008;
+  border-bottom: 3px solid #6d3517;
 }
 
 .logo {
-  font-size: 20px;
-  font-weight: bold;
+  font-size: 25px;
 }
 
 .top-actions {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 10px;
 }
 
-.hearts {
-  background: #40151b;
-  border: 1px solid #b43a4c;
-  border-radius: 20px;
-  padding: 8px 12px;
-  font-weight: bold;
-}
-
-.store-btn {
+.heart,
+.top-actions button {
   border: 0;
-  border-radius: 18px;
-  padding: 9px 12px;
-  background: #d08a28;
-  color: white;
+  border-radius: 28px;
+  padding: 13px 17px;
+  font-size: 17px;
   font-weight: bold;
-  cursor: pointer;
 }
 
-/* ƏSAS */
+.heart {
+  background: #4b1420;
+  border: 2px solid #9b304c;
+}
+
+.top-actions button {
+  background: #df951e;
+  color: white;
+}
+
+/* OYUN */
 
 main {
-  width: 100%;
-  max-width: 700px;
+  max-width: 900px;
   margin: auto;
-  padding: 12px;
+  padding-bottom: 30px;
 }
 
-.game-area {
-  text-align: center;
+.game {
+  padding: 10px 10px 0;
 }
 
-/* QISA TAxta MASA */
+.game-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  padding: 9px;
+  border-radius: 12px 12px 0 0;
+  background: #c77a2e;
+  font-size: 17px;
+}
 
-.wood-table {
+/* MASA */
+
+.table {
   position: relative;
-  width: 100%;
-  height: 360px;
-  margin: 5px auto 12px;
+  height: 620px;
+  margin: auto;
+  overflow: hidden;
 
-  border-radius: 42px;
+  border: 4px solid #9a551f;
+  border-top: 0;
+  border-radius: 0 0 28px 28px;
 
   background:
-    linear-gradient(
-      135deg,
-      #6e3d1d,
-      #9a5a29,
-      #633518
+    radial-gradient(
+      circle at 50% 45%,
+      rgba(255, 220, 130, .18),
+      transparent 30%
+    ),
+    repeating-linear-gradient(
+      8deg,
+      #b96d2b 0,
+      #b96d2b 9px,
+      #ae6225 10px,
+      #bd7330 18px
     );
 
-  border: 7px solid #321a0c;
-
   box-shadow:
-    inset 0 0 0 3px #b7763c,
-    inset 0 0 30px rgba(0,0,0,.45),
-    0 10px 25px rgba(0,0,0,.6);
+    inset 0 0 35px rgba(70, 25, 5, .55);
 }
 
 /* OYUNÇULAR */
 
-.players {
+#players {
   position: absolute;
   inset: 0;
 }
 
 .player {
   position: absolute;
-  width: 70px;
-
-  transform: translate(-50%, -50%);
-
+  width: 112px;
   text-align: center;
-  z-index: 5
+  transform: translate(-50%, -50%);
+  font-size: 13px;
+  font-weight: bold;
+}
+
+.avatar {
+  width: 96px;
+  height: 96px;
+
+  border-radius: 10px;
+  border: 3px solid #e7c08a;
+
+  background: #333;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 48px;
+
+  margin: auto;
+
+  box-shadow: 0 5px 12px #5b2b0e;
+}
+
+.badge {
+  font-size: 20px;
+  margin-top: -12px;
+  position: relative;
+}
+
+.name {
+  background: rgba(70, 30, 10, .65);
+  padding: 3px 6px;
+  border-radius: 8px;
+}
+
+/* ŞÜŞƏ */
+
+.bottle {
+  position: absolute;
+
+  left: 50%;
+  top: 50%;
+
+  transform: translate(-50%, -50%) rotate(0deg);
+
+  font-size: 88px;
+
+  z-index: 5;
+
+  filter: drop-shadow(
+    0 8px 6px rgba(0, 0, 0, .35)
+  );
+}
+
+/* MƏTN */
+
+.spin-hint {
+  position: absolute;
+
+  left: 50%;
+  bottom: 25px;
+
+  transform: translateX(-50%);
+
+  font-size: 16px;
+
+  background: rgba(70, 30, 10, .65);
+
+  padding: 7px 12px;
+
+  border-radius: 10px;
+}
+
+/* FIRLAT DÜYMƏSİ */
+
+.spin-btn {
+  display: block;
+
+  margin: 16px auto 12px;
+
+  border: 0;
+  border-radius: 12px;
+
+  padding: 15px 25px;
+
+  font-size: 20px;
+  font-weight: bold;
+
+  background: #e6a12c;
+  color: white;
+}
+
+.spin-btn:disabled {
+  opacity: .55;
+}
+
+/* SÖHBƏT */
+
+.chat,
+.admin {
+  padding: 0 18px;
+}
+
+.chat h2,
+.admin h2 {
+  margin: 12px 0 8px;
+}
+
+#messages {
+  background: #241008;
+
+  border-radius: 12px;
+
+  padding: 10px;
+
+  min-height: 55px;
+
+  border: 1px solid #512411;
+}
+
+.chat-row,
+.admin-row {
+  display: flex;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+input {
+  flex: 1;
+  min-width: 0;
+
+  padding: 13px;
+
+  border: 0;
+  border-radius: 8px;
+
+  font-size: 17px;
+}
+
+.chat-row button,
+.admin-row button {
+  border: 0;
+  border-radius: 8px;
+
+  padding: 0 18px;
+
+  font-size: 17px;
+}
+
+.chat-row button {
+  background: #ddd;
+  color: #222;
+}
+
+/* ADMİN */
+
+.admin {
+  margin-top: 18px;
+}
+
+.admin-note {
+  color: #e8c7a8;
+}
+
+.admin-row button {
+  background: #e33b43;
+  color: white;
+}
+
+#adminMsg {
+  margin-top: 8px;
+  color: #9cff9c;
+}
+
+/* TELEFON */
+
+@media (max-width: 520px) {
+
+  .topbar {
+    padding: 0 10px;
+  }
+
+  .logo {
+    font-size: 21px;
+  }
+
+  .heart,
+  .top-actions button {
+    padding: 11px 12px;
+    font-size: 15px;
+  }
+
+  .table {
+    height: 570px;
+  }
+
+  .player {
+    width: 82px;
+  }
+
+  .avatar {
+    width: 72px;
+    height: 72px;
+    font-size: 36px;
+  }
+
+  .bottle {
+    font-size: 72px;
+  }
+
+  .game-top {
+    font-size: 13px;
+  }
+}
