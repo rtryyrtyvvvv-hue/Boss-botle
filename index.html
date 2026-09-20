@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="az">
 <head>
@@ -10,93 +9,95 @@
 
 <body>
 
-  <header class="topbar">
-    <div class="logo">
-      🍾 <span>Boss Bottle</span>
+<header class="topbar">
+  <div class="logo">🍾 <b>Boss Bottle</b></div>
+
+  <div class="top-actions">
+    <div class="heart">❤️ <span id="hearts">100</span></div>
+    <button>🛒 Mağaza</button>
+  </div>
+</header>
+
+<main>
+
+<section class="game">
+
+  <div class="game-top">
+    <span>❤️ 100</span>
+    <span>⚔️</span>
+    <span>🏆</span>
+    <span>☰</span>
+    <span>⚙️</span>
+    <b>Masa 12</b>
+  </div>
+
+  <div id="table" class="table">
+
+    <div id="players"></div>
+
+    <div id="bottle" class="bottle">
+      🍾
     </div>
 
-    <div class="top-actions">
-      <div class="hearts">
-        ❤️ <span id="hearts">100</span>
-      </div>
-
-      <button id="storeBtn" class="store-btn">
-        🛒 Mağaza
-      </button>
+    <div class="spin-hint">
+      Şüşəni fırlat
     </div>
-  </header>
+
+  </div>
+
+  <button id="spinBtn" class="spin-btn">
+    🍾 Şüşəni fırlat
+  </button>
+
+</section>
 
 
-  <main>
+<section class="chat">
 
-    <!-- MASA -->
-    <section class="game-area">
+  <h2>💬 Söhbət</h2>
 
-      <div class="wood-table">
+  <div id="messages">
+    <p><b>Sistem:</b> Boss Bottle-a xoş gəlmisən!</p>
+  </div>
 
-        <div id="players" class="players"></div>
+  <div class="chat-row">
+    <input id="chatInput" placeholder="Mesaj yaz...">
+    <button id="sendBtn">Göndər</button>
+  </div>
 
-        <div class="bottle-area">
-          <div id="bottle" class="bottle">🍾</div>
-          <div id="status" class="status">
-            Şüşəni fırlat!
-          </div>
-        </div>
-
-      </div>
-
-      <button id="spinBtn" class="spin-btn">
-        🍾 Şüşəni fırlat
-      </button>
-
-    </section>
+</section>
 
 
-    <!-- ÇAT -->
-    <section class="chat-box">
+<section class="admin">
 
-      <div class="chat-title">
-        💬 Söhbət
-      </div>
+  <h2>👑 Admin</h2>
 
-      <div id="chatMessages" class="chat-messages">
-        <div class="message">
-          <b>Sistem:</b> Boss Bottle-a xoş gəlmisən!
-        </div>
-      </div>
+  <p class="admin-note">
+    Bonus yalnız admin tərəfindən verilə bilər.
+  </p>
 
-      <div class="chat-input-area">
-        <input
-          id="chatInput"
-          type="text"
-          placeholder="Mesaj yaz..."
-          maxlength="100"
-        >
+  <div class="admin-row">
 
-        <button id="sendChat">
-          Göndər
-        </button>
-      </div>
+    <input
+      id="bonusInput"
+      type="number"
+      value="10"
+      min="1"
+    >
 
-    </section>
+    <button id="bonusBtn">
+      ❤️ Bonus ver
+    </button>
 
+  </div>
 
-    <!-- ADMIN -->
-    <section class="admin-panel">
+  <div id="adminMsg"></div>
 
-      <h3>👑 Admin</h3>
+</section>
 
-      <div class="admin-row">
+</main>
 
-        <input
-          id="bonusAmount"
-          type="number"
-          min="1"
-          value="10"
-        >
+<script src="app.js"></script>
 
-        <button id="giveBonus">
-          ❤️ Bonus ver
-        </button>
-
-      </div
+</body>
+</html>
