@@ -1,157 +1,145 @@
-const playerData = [
-  ["👤", "Boss", "👑"],
-  ["👩", "Aylin", ""],
-  ["👨", "Murad", ""],
-  ["👩", "Nərgiz", ""],
-  ["👨", "Elvin", ""],
-  ["👩", "Lalə", ""],
-  ["👨", "Orxan", ""],
-  ["👩", "Leyla", ""],
-  ["👨", "Rəşad", ""],
-  ["👩", "Aysu", ""],
-  ["👨", "Samir", ""],
-  ["👩", "Məftun", ""]
+const players = [
+  "👤","👤","👤","👤","👤","👤",
+  "👤","👤","👤","👤","👤","👤"
 ];
 
-const players = document.getElementById("players");
+const names = players.map((_, i) => "Player " + (i + 1));
+
+const playersBox = document.getElementById("players");
 const bottle = document.getElementById("bottle");
 const spinBtn = document.getElementById("spinBtn");
+const result = document.getElementById("result");
 
-const positions = [
-  [50, 8],
-  [75, 12],
-  [92, 29],
-  [92, 52],
-  [76, 78],
-  [55, 92],
-  [28, 92],
-  [8, 75],
-  [7, 51],
-  [7, 29],
-  [25, 12],
-  [50, 5]
-];
-
-playerData.forEach((p, i) => {
-
-  const el = document.createElement("div");
-
-  el.className = "player";
-
-  el.style.left = positions[i][0] + "%";
-  el.style.top = positions[i][1] + "%";
-
-  el.innerHTML = `
-    <div class="avatar">${p[0]}</div>
-    <div class="badge">${p[2]}</div>
-    <div class="name">${p[1]}</div>
-  `;
-
-  players.appendChild(el);
-});
+const chatBox = document.getElementById("chatBox");
+const chatInput = document.getElementById("chatInput");
+const sendBtn = document.getElementById("sendBtn");
 
 
+function placePlayers() {
+
+  playersBox.innerHTML = "";
+
+  const table = document.getElementById("table");
+  const rect = table.getBoundingClientRect();
+
+  const radius = Math.min(rect.width, rect.height) * 0.405;
+
+  players.forEach((avatar, i) => {
+
+    const angle = (-90 + i * 30) * Math.PI / 180;
+
+    const x =
+      50 + Math.cos(angle) *
+      (radius / rect.width) * 100;
+
+    const y =
+      50 + Math.sin(angle) *
+      (radius / rect.height) * 100;
+
+
+    const card = document.createElement("div");
+
+    card.className = "player";
+
+    card.style.left = x + "%";
+    card.style.top = y + "%";
+
+
+    card.innerHTML = `
+      <div class="avatar">${avatar}</div>
+      <div class="name">${names[i]}</div>
+    `;
+
+
+    playersBox.appendChild(card);
+
+  });
+}
+
+
+placePlayers();
+
+window.addEventListener("resize", placePlayers);
+
+
+
+let rotation = 0;
 let spinning = false;
-let angle = 0;
 
 
-spinBtn.onclick = () => {
+spinBtn.addEventListener("click", () => {
 
   if (spinning) return;
 
   spinning = true;
-  spinBtn.disabled = true;
 
-  const target = Math.floor(Math.random() * 12);
+  result.textContent = "🍾 Şüşə fırlanır...";
 
-  const targetAngle =
-    (target * 30) +
-    360 * 5 +
-    Math.floor(Math.random() * 360);
 
-  angle += targetAngle;
+  const extra =
+    1440 + Math.floor(Math.random() * 720);
 
-  bottle.style.transition =
-    "transform 4s cubic-bezier(.12,.8,.18,1)";
+
+  rotation += extra;
+
 
   bottle.style.transform =
-    `translate(-50%, -50%) rotate(${angle}deg)`;
+    `rotate(${rotation}deg)`;
 
 
   setTimeout(() => {
 
-    const chosen = playerData[target];
+    const chosen =
+      Math.floor(Math.random() * 12);
 
-    addMessage(
-      `🍾 Şüşə ${chosen[1]} adlı oyunçuya düşdü!`
-    );
+    result.textContent =
+      `🎯 Seçilən: ${names[chosen]}`;
 
     spinning = false;
-    spinBtn.disabled = false;
 
-  }, 4200);
-};
+  }, 2300);
 
-
-function addMessage(text) {
-
-  const box = document.getElementById("messages");
-
-  const p = document.createElement("p");
-
-  p.textContent = text;
-
-  box.appendChild(p);
-
-  box.scrollTop = box.scrollHeight;
-}
+});
 
 
-document.getElementById("sendBtn").onclick = () => {
 
-  const input =
-    document.getElementById("chatInput");
+function sendMessage() {
 
-  const text = input.value.trim();
+  const text = chatInput.value.trim();
 
   if (!text) return;
 
-  addMessage("Sən: " + text);
 
-  input.value = "";
-};
+  const row = document.createElement("div");
+
+  row.innerHTML =
+    `<b>Sən:</b> ${text.replace(/[<>]/g, "")}`;
 
 
-document.getElementById("chatInput")
-  .addEventListener("keydown", (e) => {
+  chatBox.appendChild(row);
+
+  chatBox.scrollTop =
+    chatBox.scrollHeight;
+
+
+  chatInput.value = "";
+
+}
+
+
+sendBtn.addEventListener(
+  "click",
+  sendMessage
+);
+
+
+chatInput.addEventListener(
+  "keydown",
+  (e) => {
 
     if (e.key === "Enter") {
-
-      document
-        .getElementById("sendBtn")
-        .click();
-
+      sendMessage();
     }
 
-  });
-
-
-document.getElementById("bonusBtn").onclick = () => {
-
-  const amount =
-    Math.max(
-      1,
-      Number(
-        document.getElementById("bonusInput").value
-      ) || 0
-    );
-
-  const hearts =
-    document.getElementById("hearts");
-
-  hearts.textContent =
-    Number(hearts.textContent) + amount;
-
-  document.getElementById("adminMsg").textContent =
-    `❤️ ${amount} bonus əlavə edildi.`;
-};
+  }
+);
