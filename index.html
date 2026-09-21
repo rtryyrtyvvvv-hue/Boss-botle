@@ -61,19 +61,15 @@ body{
   margin:auto;
   position:relative;
   border-radius:50%;
-
-  background:
-    radial-gradient(
-      circle at 50% 45%,
-      #8b4c20 0%,
-      #6a3617 38%,
-      #4a2411 62%,
-      #241108 82%,
-      #100806 100%
-    );
-
+  background:radial-gradient(
+    circle at 50% 45%,
+    #8b4c20 0%,
+    #6a3617 38%,
+    #4a2411 62%,
+    #241108 82%,
+    #100806 100%
+  );
   border:8px solid #a96d21;
-
   box-shadow:
     inset 0 0 0 4px #5a3215,
     inset 0 0 45px #160805,
@@ -88,7 +84,6 @@ body{
   height:58%;
   border:6px solid #9b6221;
   border-radius:50%;
-
   box-shadow:
     inset 0 0 20px #351708,
     0 0 12px #241005;
@@ -111,18 +106,13 @@ body{
   width:68px;
   height:68px;
   margin:auto;
-
   border:5px solid #e0a03d;
   border-radius:17px;
-
   background:#111;
-
   display:flex;
   align-items:center;
   justify-content:center;
-
   font-size:40px;
-
   box-shadow:
     0 4px 10px #000,
     inset 0 0 10px #222;
@@ -133,7 +123,6 @@ body{
   font-size:13px;
   color:#fff;
   white-space:nowrap;
-
   text-shadow:
     0 2px 3px #000,
     0 0 3px #000;
@@ -143,16 +132,12 @@ body{
   position:absolute;
   left:50%;
   top:50%;
-
   width:65%;
   height:20%;
-
   transform:translate(-50%,-50%);
-
   display:flex;
   align-items:center;
   justify-content:center;
-
   z-index:3;
 }
 
@@ -160,12 +145,8 @@ body{
   width:88%;
   height:55px;
   position:relative;
-
   transform-origin:50% 50%;
-
-  transition:
-    transform 2.3s cubic-bezier(.15,.75,.2,1);
-
+  transition:transform 2.3s cubic-bezier(.15,.75,.2,1);
   filter:drop-shadow(0 6px 5px #000);
 }
 
@@ -173,21 +154,15 @@ body{
   position:absolute;
   right:0;
   top:3px;
-
   width:80%;
   height:48px;
-
   border-radius:25px;
-
-  background:
-    linear-gradient(
-      #edfafa,
-      #c4dddd 50%,
-      #779b9d
-    );
-
+  background:linear-gradient(
+    #edfafa,
+    #c4dddd 50%,
+    #779b9d
+  );
   border:3px solid #31575a;
-
   display:flex;
   align-items:center;
   justify-content:center;
@@ -196,13 +171,9 @@ body{
 .bottle-body span{
   background:#e4aa39;
   color:#241508;
-
   font-weight:900;
-
   padding:7px 18px;
-
   border-radius:8px;
-
   box-shadow:0 2px 4px #555;
 }
 
@@ -210,66 +181,42 @@ body{
   position:absolute;
   left:0;
   top:15px;
-
   width:27%;
   height:23px;
-
   background:#d5ecea;
-
   border:3px solid #31575a;
   border-right:0;
-
   border-radius:13px 0 0 13px;
 }
 
 .bottle-neck:before{
   content:"";
-
   position:absolute;
-
   left:-13px;
   top:-5px;
-
   width:20px;
   height:32px;
-
   background:#e2b84e;
-
   border:2px solid #79591e;
-
   border-radius:8px;
 }
 
 .spin-btn{
   position:absolute;
-
   left:50%;
   bottom:8%;
-
   transform:translateX(-50%);
-
   z-index:10;
-
   border:0;
   border-radius:28px;
-
-  background:
-    linear-gradient(
-      #efb84d,
-      #c98625
-    );
-
+  background:linear-gradient(#efb84d,#c98625);
   color:#241407;
-
   font-weight:900;
   font-size:16px;
-
   padding:12px 25px;
-
   box-shadow:
     0 5px 12px #000,
     inset 0 1px #ffe3a0;
-
   cursor:pointer;
 }
 
@@ -279,98 +226,232 @@ body{
 
 .result{
   position:absolute;
-
   left:50%;
   bottom:2%;
-
   transform:translateX(-50%);
-
   z-index:10;
-
   color:#ffe4ad;
-
   font-size:13px;
-
   white-space:nowrap;
-
   text-shadow:0 2px 3px #000;
 }
 
 .bottom-panel{
   width:min(720px,96vw);
-
   margin:16px auto 0;
-
   background:#1d100c;
-
   border:2px solid #5b391b;
-
   border-radius:18px;
-
   padding:13px;
 }
 
 .chat-title{
   color:#ffd47d;
-
   font-size:20px;
   font-weight:900;
-
   margin-bottom:9px;
 }
 
 .chat-box{
   height:110px;
-
   overflow:auto;
-
   background:#100806;
-
   border-radius:12px;
-
   padding:10px;
-
   font-size:15px;
-
   border:1px solid #24150f;
 }
 
 .chat-row{
   display:flex;
-
   gap:8px;
-
   margin-top:9px;
 }
 
 .chat-row input{
   flex:1;
   min-width:0;
-
   border:0;
   outline:none;
-
   border-radius:12px;
-
   padding:13px;
-
   font-size:16px;
 }
 
 .chat-row button{
   border:0;
-
   border-radius:12px;
-
   padding:0 18px;
-
   background:#dfa13a;
-
   color:#241407;
-
   font-weight:900;
-
   font-size:15px;
 }
 
-@media(max-width:560
+@media(max-width:560px){
+
+  .topbar{
+    height:68px;
+    padding:0 11px;
+  }
+
+  .brand{
+    font-size:20px;
+  }
+
+  .coins{
+    font-size:16px;
+    padding:8px 11px;
+  }
+
+  .game{
+    padding-top:14px;
+  }
+
+  .table{
+    width:96vw;
+    height:96vw;
+    border-width:7px;
+  }
+
+  .player{
+    width:65px;
+  }
+
+  .avatar{
+    width:57px;
+    height:57px;
+    border-width:4px;
+    border-radius:15px;
+    font-size:34px;
+  }
+
+  .name{
+    font-size:11px;
+    margin-top:3px;
+  }
+
+  .bottle{
+    height:40px;
+  }
+
+  .bottle-body{
+    height:35px;
+    top:3px;
+  }
+
+  .bottle-body span{
+    padding:5px 14px;
+    font-size:14px;
+  }
+
+  .bottle-neck{
+    height:17px;
+    top:10px;
+  }
+
+  .bottle-neck:before{
+    height:27px;
+    width:17px;
+  }
+
+  .spin-btn{
+    font-size:14px;
+    padding:10px 20px;
+    bottom:8%;
+  }
+
+  .result{
+    font-size:11px;
+  }
+
+  .bottom-panel{
+    width:96vw;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header class="topbar">
+
+  <div class="brand">
+    🍾 BOSS BOTTLE
+  </div>
+
+  <div class="coins">
+    🪙 <span id="coins">1000</span>
+  </div>
+
+</header>
+
+<main class="game">
+
+  <section class="table" id="table">
+
+    <div class="table-ring"></div>
+
+    <div class="players" id="players"></div>
+
+    <div class="bottle-area">
+
+      <div class="bottle" id="bottle">
+
+        <div class="bottle-neck"></div>
+
+        <div class="bottle-body">
+          <span>BOSS</span>
+        </div>
+
+      </div>
+
+    </div>
+
+    <button class="spin-btn" id="spinBtn">
+      🍾 FƏRİLƏT
+    </button>
+
+    <div class="result" id="result">
+      Şüşəni fırlat
+    </div>
+
+  </section>
+
+  <section class="bottom-panel">
+
+    <div class="chat-title">
+      💬 CANLI CHAT
+    </div>
+
+    <div class="chat-box" id="chatBox">
+
+      <div>
+        <b>Boss:</b>
+        Oyuna xoş gəlmisiniz!
+      </div>
+
+    </div>
+
+    <div class="chat-row">
+
+      <input
+        id="chatInput"
+        type="text"
+        placeholder="Mesaj yaz..."
+      >
+
+      <button id="sendBtn">
+        Göndər
+      </button>
+
+    </div>
+
+  </section>
+
+</main>
+
+<script src="app.js"></script>
+
+</body>
+</html>
